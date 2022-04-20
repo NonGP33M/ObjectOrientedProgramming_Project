@@ -17,7 +17,7 @@ public class TabControl {
     private TabPane tabPane;
 
     public void initialize(){
-        add.setGraphic(new ImageView(new Image(getClass().getResource("icons/add.png").toString())));
+        add.setGraphic(new ImageView(new Image(TabControl.class.getResource("icons/add.png").toString())));
         tabPane.getTabs().add(0, createNewTab("New tab"));
         tabPane.getSelectionModel().select(0);
         tabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
@@ -32,7 +32,7 @@ public class TabControl {
     public Tab createNewTab(String name){
         Tab tab = new Tab(name);
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("BrowserLayout.fxml"));
+            Parent root = FXMLLoader.load(TabControl.class.getResource("BrowserLayout.fxml"));
             tab.setContent(root);
         } catch (IOException e) {
             e.printStackTrace();

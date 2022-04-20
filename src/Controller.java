@@ -33,8 +33,9 @@ public class Controller {
     private WebView webView;
 
     public void initialize(){
-        String tfURL = "https://www.google.com/";
+        String tfURL = "";
         webView.getEngine().load(tfURL);
+        
     }
 
 
