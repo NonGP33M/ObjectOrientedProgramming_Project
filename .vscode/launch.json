@@ -8,7 +8,8 @@
             "type": "java",
             "name": "Launch Current File",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "${file}",
+            "vmArgs": "--module-path E:\\Project_Oop\\lib --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",

@@ -5,5 +5,4 @@ public class TabContro {
 
     @FXML
     private TabPane add;
-
 }

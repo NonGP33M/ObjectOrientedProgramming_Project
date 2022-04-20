@@ -1,3 +1,5 @@
+import java.net.URL;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,8 +32,9 @@ public class Controller {
     @FXML
     private WebView webView;
 
-    public void initialize(){
-        
+    public void initialize(URL url){
+        String tfURL = "https://www.google.com/";
+        webView.getEngine().load(tfURL);
     }
 
 
@@ -57,7 +60,7 @@ public class Controller {
 
     @FXML
     void goWeb(ActionEvent event) {
-
+    
     }
 
     @FXML
