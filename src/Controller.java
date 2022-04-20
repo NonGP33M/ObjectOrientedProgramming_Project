@@ -30,6 +30,11 @@ public class Controller {
     @FXML
     private WebView webView;
 
+    public void initialize(){
+        
+    }
+
+
     @FXML
     void Option(ActionEvent event) {
 
@@ -37,17 +42,17 @@ public class Controller {
 
     @FXML
     void goBack(ActionEvent event) {
-        
+        webView.getEngine().getHistory().go(-1);
     }
 
     @FXML
     void goForward(ActionEvent event) {
-
+        webView.getEngine().getHistory().go(1);
     }
 
     @FXML
     void goRefresh(ActionEvent event) {
-
+        webView.getEngine().reload();
     }
 
     @FXML
@@ -57,12 +62,12 @@ public class Controller {
 
     @FXML
     void zoomIn(ActionEvent event) {
-
+        webView.setZoom(webView.getZoom() + 10);
     }
 
     @FXML
     void zoomOut(ActionEvent event) {
-
+        webView.setZoom(webView.getZoom() - 10);
     }
 
 }
