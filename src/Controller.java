@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
 
 public class Controller {
@@ -24,6 +25,9 @@ public class Controller {
     private Button btZoomOut;
 
     @FXML
+    private TextField goWeb;
+
+    @FXML
     private WebView webView;
 
     @FXML
@@ -33,7 +37,7 @@ public class Controller {
 
     @FXML
     void goBack(ActionEvent event) {
-
+        
     }
 
     @FXML
@@ -43,6 +47,11 @@ public class Controller {
 
     @FXML
     void goRefresh(ActionEvent event) {
+
+    }
+
+    @FXML
+    void goWeb(ActionEvent event) {
 
     }
 
