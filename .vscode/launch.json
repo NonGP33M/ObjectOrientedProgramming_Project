@@ -9,14 +9,14 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "vmArgs": "--module-path E:\\Project_Oop\\lib --add-modules javafx.controls,javafx.fxml"
         },
         {
             "type": "java",
             "name": "Launch App",
             "request": "launch",
             "mainClass": "App",
-            "projectName": "Project_Oop_7f7d51b0"
+            "projectName": "Project_Oop_7f7d51b0",
+            "vmArgs": "--module-path \"./lib/javafx-sdk-18/lib\" --add-modules javafx.controls,javafx.fxml, javafx.webView"
         }
     ]
 }

@@ -32,7 +32,7 @@ public class Controller {
     @FXML
     private WebView webView;
 
-    public void initialize(URL url){
+    public void initialize(){
         String tfURL = "https://www.google.com/";
         webView.getEngine().load(tfURL);
     }
