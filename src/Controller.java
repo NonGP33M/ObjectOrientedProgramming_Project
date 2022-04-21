@@ -61,10 +61,7 @@ public class Controller {
 
     @FXML
     void Option(ActionEvent event) {
-        Menu menu = new Menu();
-        MenuItem menuItem = new MenuItem("Item");
-        menu.getItems().add(menuItem);
-        
+
     } 
 
     @FXML
@@ -85,14 +82,17 @@ public class Controller {
     @FXML
     void goWeb(ActionEvent event) {
         String tfURL = goWeb.getText();
-        if (tfURL.startsWith("http://") && tfURL.startsWith("https://")) {
+        if (tfURL.startsWith("http://") || tfURL.startsWith("https://")) {
             webView.getEngine().load(tfURL);
+            System.out.println("if");
         }
         else if(!tfURL.startsWith("http://") && !tfURL.startsWith("https://")){
             webView.getEngine().load("https://" + tfURL);
+            System.out.println("el if");
         }
         else{
-            webView.getEngine().load("https://www.google.com/search?q=" + goWeb);
+            webView.getEngine().load("https://www.google.com/search?q=" + goWeb.getText());
+            System.out.println("else");
         }
     }
 
