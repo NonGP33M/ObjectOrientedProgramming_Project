@@ -1,11 +1,16 @@
+import org.w3c.dom.Document;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class Controller {
 
@@ -32,27 +37,19 @@ public class Controller {
 
     @FXML
     private WebView webView;
+    private Document primaryStage;
 
     public void initialize() {
         webView.getEngine().locationProperty().addListener((ov, oldstr, newstr) ->{
             goWeb.setText(newstr);
-            
         });
+
+        goWeb.getScene().addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+            if(key.getCode() == KeyCode.F12) {
+            showText("Soure of " + webView.getEngine().getTitle(),primaryStage,(String) webView.getEngine().executeScript("document.documentElement.outerHTML"))};
     }
-
-    // }
-    /*
-     * TextArea root = new TextArea(tfURL);
-     * Scene scene = new Scene(root, 600, 400);
-     * scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-     * if(key.getCode() == KeyCode.F12) {
-     * showText("Soure of " + webView.getEngine().getTitle(),
-     * webView.getEngine().window, (String)
-     * webView.executeScript("document.documentElement.outerHTML"));
-     * }
-     * });
-     */
-
+    
+    
     @FXML
     void Option(ActionEvent event) {
 
@@ -96,13 +93,13 @@ public class Controller {
         webView.setZoom(webView.getZoom() - 0.1);
     }
 
-    public void showText(String title, Stage window, String text) {
+    public void showText(String title, Document document, String text) {
         TextArea root = new TextArea(text);
         Scene scene = new Scene(root, 600, 400);
         Stage secondWindow = new Stage();
         secondWindow.setTitle(title);
         secondWindow.setScene(scene);
-        secondWindow.initOwner(window);
+        secondWindow.initOwner((Window) document);
         secondWindow.show();
     }
 }
