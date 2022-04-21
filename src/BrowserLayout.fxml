@@ -21,6 +21,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </Button>
             <Button fx:id="btForward" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goForward" prefHeight="28.0" prefWidth="28.0" stylesheets="@css/ButtonLayout.css">
                <graphic>
