@@ -1,20 +1,9 @@
-import java.net.URL;
-
-import javax.swing.event.ChangeListener;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -45,9 +34,10 @@ public class Controller {
     private WebView webView;
 
     public void initialize() {
-        String tfURL = "";
-        webView.getEngine().load(tfURL);
-        webView.getEngine().load("http://" + webView.getEngine().getHistory());
+        webView.getEngine().locationProperty().addListener(webView.getEngine().);
+    
+        
+         
     
        // }
         /*TextArea root = new TextArea(tfURL);
@@ -84,15 +74,13 @@ public class Controller {
         String tfURL = goWeb.getText();
         if (tfURL.startsWith("http://") || tfURL.startsWith("https://")) {
             webView.getEngine().load(tfURL);
-            System.out.println("if");
         }
-        else if(!tfURL.startsWith("http://") && !tfURL.startsWith("https://")){
+        else if(!tfURL.startsWith("http://") && !tfURL.startsWith("https://") && tfURL.endsWith(".com")){
             webView.getEngine().load("https://" + tfURL);
-            System.out.println("el if");
         }
         else{
             webView.getEngine().load("https://www.google.com/search?q=" + goWeb.getText());
-            System.out.println("else");
+            goWeb.setText("https://www.google.com/search?q=" + goWeb.getText());
         }
     }
 
