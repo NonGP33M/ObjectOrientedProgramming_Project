@@ -1,3 +1,5 @@
+import javax.swing.event.ChangeListener;
+import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -6,6 +8,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.Initializable;
 
 public class Controller {
 
@@ -34,25 +39,29 @@ public class Controller {
     private WebView webView;
 
     public void initialize() {
-        webView.getEngine().locationProperty().addListener(webView.getEngine().);
-    
-        
-         
-    
-       // }
-        /*TextArea root = new TextArea(tfURL);
-        Scene scene = new Scene(root, 600, 400);
-        scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
-            if(key.getCode() == KeyCode.F12) {
-                showText("Soure of " + webView.getEngine().getTitle(), webView.getEngine().window, (String) webView.executeScript("document.documentElement.outerHTML"));
-            }
-      });*/
+        webView.getEngine().locationProperty().addListener((ov, oldstr, newstr) ->{
+            goWeb.setText(newstr);
+            
+        });
     }
+
+    // }
+    /*
+     * TextArea root = new TextArea(tfURL);
+     * Scene scene = new Scene(root, 600, 400);
+     * scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
+     * if(key.getCode() == KeyCode.F12) {
+     * showText("Soure of " + webView.getEngine().getTitle(),
+     * webView.getEngine().window, (String)
+     * webView.executeScript("document.documentElement.outerHTML"));
+     * }
+     * });
+     */
 
     @FXML
     void Option(ActionEvent event) {
 
-    } 
+    }
 
     @FXML
     void goBack(ActionEvent event) {
@@ -71,17 +80,15 @@ public class Controller {
 
     @FXML
     void goWeb(ActionEvent event) {
-        String tfURL = goWeb.getText();
-        if (tfURL.startsWith("http://") || tfURL.startsWith("https://")) {
-            webView.getEngine().load(tfURL);
+        String URL = goWeb.getText();
+        if (!URL.contains(".")) {
+            webView.getEngine().load("https://www.google.com/search?q=" + URL);
+            return;
         }
-        else if(!tfURL.startsWith("http://") && !tfURL.startsWith("https://") && tfURL.endsWith(".com")){
-            webView.getEngine().load("https://" + tfURL);
+        if (!URL.startsWith("http://") && !URL.startsWith("https://")) {
+            URL = "https://" + URL;
         }
-        else{
-            webView.getEngine().load("https://www.google.com/search?q=" + goWeb.getText());
-            goWeb.setText("https://www.google.com/search?q=" + goWeb.getText());
-        }
+        webView.getEngine().load(URL);
     }
 
     @FXML
