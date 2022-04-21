@@ -1,5 +1,3 @@
-import javax.swing.event.ChangeListener;
-import java.net.URL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -8,9 +6,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import javafx.beans.property.ReadOnlyStringProperty;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.Initializable;
 
 public class Controller {
 
