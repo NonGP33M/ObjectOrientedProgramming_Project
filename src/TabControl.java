@@ -17,6 +17,7 @@ public class TabControl {
     private TabPane tabPane;
 
     public void initialize(){
+        
         add.setGraphic(new ImageView(new Image(TabControl.class.getResource("icons/add.png").toString(),14,14,true,true)));
         tabPane.getTabs().add(0, createNewTab("New tab"));
         tabPane.getSelectionModel().select(0);

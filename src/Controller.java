@@ -40,8 +40,8 @@ public class Controller {
             goWeb.setText(newstr);
         });
 
-        goWeb.getScene().setOnKeyPressed((KeyEvent Key) ->{
-            if (Key.getCode() == KeyCode.F12) {
+        webView.setOnKeyPressed((key) ->{
+            if (key.getCode() == KeyCode.F12) {
                 showText("Source of " + webView.getEngine().getTitle(), (Stage) webView.getScene().getWindow() ,(String)webView.getEngine().executeScript("document.documentElement.outerHTML"));
             }
         }
