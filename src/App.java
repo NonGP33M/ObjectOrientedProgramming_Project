@@ -12,9 +12,9 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("TabBrowser.fxml"));
-        Scene scene = new Scene(root);
+        Scene secondScene = new Scene(root);
         primaryStage.setTitle("Program");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(secondScene);
         primaryStage.show();
     }
 }
