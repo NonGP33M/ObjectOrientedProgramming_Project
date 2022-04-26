@@ -33,7 +33,11 @@ public class TabControl extends Controller{
     public Tab createNewTab(String name){
         Tab tab = new Tab(name);
         try {
-            Parent root = FXMLLoader.load(TabControl.class.getResource("BrowserLayout.fxml"));
+         //   Parent root = FXMLLoader.load(TabControl.class.getResource("BrowserLayout.fxml"));
+            FXMLLoader loader = new FXMLLoader(TabControl.class.getResource("BrowserLayout.fxml"));
+            Parent root = loader.load();
+            Controller con = (Controller)loader.getController();
+            con.currentTab = tab;
             tab.setContent(root);
         } catch (IOException e) {
             e.printStackTrace();

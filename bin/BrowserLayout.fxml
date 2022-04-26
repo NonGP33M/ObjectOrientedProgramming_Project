@@ -43,7 +43,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <TextField fx:id="goWeb" onAction="#goWeb" prefHeight="26.0" prefWidth="689.0" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="goWeb" onAction="#goWeb" prefHeight="26.0" prefWidth="689.0" style="-fx-background-radius: 5em; -fx-background-insets: 0 0 0 -5;" HBox.hgrow="ALWAYS" />
             <Button fx:id="btZoomIn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#zoomIn" prefHeight="28.0" prefWidth="28.0" stylesheets="@css/ButtonLayout.css">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -62,7 +62,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btOption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#Option" prefHeight="28.0" prefWidth="28.0" stylesheets="@css/ButtonLayout.css" HBox.hgrow="ALWAYS">
+            <Button fx:id="btZoomOut1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#zoomOut" prefHeight="28.0" prefWidth="28.0" stylesheets="@css/ButtonLayout.css">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

@@ -1,7 +1,9 @@
+import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -35,6 +37,8 @@ public class Controller {
     @FXML
     private WebView webView;
 
+    public Tab currentTab;
+
     public WebView getWebView(){
         return  webView;
     }
@@ -47,6 +51,11 @@ public class Controller {
         webView.getEngine().locationProperty().addListener((ov, oldstr, newstr) ->{
             goWeb.setText(newstr);
         });
+        webView.getEngine().getLoadWorker().stateProperty().addListener((obs,oldvalue,newvalue) -> {
+            if(newvalue == State.SUCCEEDED){
+                currentTab.setText(webView.getEngine().getTitle());
+            }
+       }); 
 
         webView.setOnKeyPressed((key) ->{
             if (key.getCode() == KeyCode.F12) {
