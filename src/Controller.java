@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -34,6 +35,14 @@ public class Controller {
     @FXML
     private WebView webView;
 
+    public WebView getWebView(){
+        return  webView;
+    }
+
+    public TextField getGoWeb(){
+        return  goWeb;
+    }
+
     public void initialize() {
         webView.getEngine().locationProperty().addListener((ov, oldstr, newstr) ->{
             goWeb.setText(newstr);
@@ -45,6 +54,16 @@ public class Controller {
             }
         }
         );
+
+        //Zoom with Scroll Mouse (Ctrl + Scroll Mouse)
+        webView.addEventFilter(ScrollEvent.SCROLL, (ScrollEvent se) -> {
+            double deltaY = se.getDeltaY();
+            if(se.isControlDown() && deltaY > 0) {
+                zoomIn();
+            } else if(se.isControlDown() && deltaY < 0) {
+                zoomOut();
+            }
+        });
     }
     
     @FXML
@@ -70,6 +89,7 @@ public class Controller {
     @FXML
     void goWeb(ActionEvent event) {
         String URL = goWeb.getText();
+
         if (!URL.contains(".")) {
             webView.getEngine().load("https://www.google.com/search?q=" + URL);
             return;
@@ -77,17 +97,18 @@ public class Controller {
         if (!URL.startsWith("http://") && !URL.startsWith("https://")) {
             URL = "https://" + URL;
         }
+
         webView.getEngine().load(URL);
     }
 
     @FXML
-    void zoomIn(ActionEvent event) {
-        webView.setZoom(webView.getZoom() + 0.1);
+    void zoomIn() {
+        webView.setZoom(webView.getZoom() * 1.1);
     }
 
     @FXML
-    void zoomOut(ActionEvent event) {
-        webView.setZoom(webView.getZoom() - 0.1);
+    void zoomOut() {
+        webView.setZoom(webView.getZoom() / 1.1);
     }
 
     public void showText(String title, Stage window, String text) {

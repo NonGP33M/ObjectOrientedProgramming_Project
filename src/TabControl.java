@@ -8,7 +8,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class TabControl {
+public class TabControl extends Controller{
 
     @FXML
     private Tab add;
