@@ -51,8 +51,6 @@ public class Controller {
         webView.getEngine().locationProperty().addListener((ov, oldstr, newstr) ->{
             goWeb.setText(newstr);
         });
-
-        //Change tab title
         webView.getEngine().getLoadWorker().stateProperty().addListener((obs,oldvalue,newvalue) -> {
             if(newvalue == State.SUCCEEDED){
                 currentTab.setText(webView.getEngine().getTitle());
