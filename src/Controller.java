@@ -1,18 +1,17 @@
-import javafx.event.EventHandler;
+
 import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
+
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
+
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -26,7 +25,10 @@ public class Controller {
     private Button btForward;
 
     @FXML
-    private Button btOption;
+    private MenuItem btNewTab;
+
+    @FXML
+    private MenuItem btShowSource;
 
     @FXML
     private Button btRefresh;
@@ -45,14 +47,6 @@ public class Controller {
 
     public Tab currentTab;
 
-    public WebView getWebView(){
-        return  webView;
-    }
-
-    public TextField getGoWeb(){
-        return  goWeb;
-    }
-
     public void initialize() {
         webView.getEngine().locationProperty().addListener((ov, oldstr, newstr) ->{
             goWeb.setText(newstr);
@@ -65,7 +59,7 @@ public class Controller {
 
         webView.setOnKeyPressed((key) ->{
             if (key.getCode() == KeyCode.F12) {
-                showText("Source of " + webView.getEngine().getTitle(), (Stage) webView.getScene().getWindow() ,(String)webView.getEngine().executeScript("document.documentElement.outerHTML"));
+                showSource(null);
             }
         }
         );
@@ -81,11 +75,15 @@ public class Controller {
         });
     }
     
-    @FXML
-    void Option(ActionEvent event) {
-        
 
-        
+    @FXML
+    void addNewTab(ActionEvent event) {
+        currentTab.getTabPane().getSelectionModel().selectLast();
+    }
+
+    @FXML
+    void showSource(ActionEvent event) {
+        showText("Source of " + webView.getEngine().getTitle(), (Stage) webView.getScene().getWindow() ,(String)webView.getEngine().executeScript("document.documentElement.outerHTML"));
     }
 
     @FXML

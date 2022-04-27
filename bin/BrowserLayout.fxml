@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
@@ -64,10 +65,14 @@
                   </ImageView>
                </graphic>
             </Button>
-            <MenuButton fx:id="btOption" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" stylesheets="@css/ButtonLayout.css">
+            <MenuButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" stylesheets="@css/ButtonLayout.css">
               <items>
-                <MenuItem mnemonicParsing="false" text="New tab" />
-                <MenuItem mnemonicParsing="false" text="New window" />
+                <MenuItem fx:id="btNewTab" mnemonicParsing="false" onAction="#addNewTab" text="New tab">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="btShowSource" mnemonicParsing="false" onAction="#showSource" text="Show Source Code" />
               </items>
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" translateX="-4.0">
