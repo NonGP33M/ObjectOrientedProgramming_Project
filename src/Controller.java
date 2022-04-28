@@ -4,12 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
 import javafx.scene.input.KeyEvent;
@@ -140,12 +136,16 @@ public class Controller {
 
     @FXML
     void zoomIn(ActionEvent event) {
-        webView.setZoom(webView.getZoom() * 1.1);
+        if(webView.getZoom() <= 1.9) {
+            webView.setZoom(webView.getZoom() * 1.1);
+        }
     }
 
     @FXML
     void zoomOut(ActionEvent event) {
-        webView.setZoom(webView.getZoom() / 1.1);
+        if(webView.getZoom() >= 0.25) {
+            webView.setZoom(webView.getZoom() / 1.1);
+        }
     }
 
     public void showText(String title, Stage window, String text) {
