@@ -12,9 +12,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+
+import java.security.Key;
 
 public class Controller {
 
@@ -55,22 +58,41 @@ public class Controller {
             if(newvalue == State.SUCCEEDED){
                 currentTab.setText(webView.getEngine().getTitle());
             }
-       }); 
+       });
 
-        webView.setOnKeyPressed((key) ->{
-            if (key.getCode() == KeyCode.F12) {
+        //Shortcut for browser
+        webView.addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent ke) -> {
+            if (ke.getCode() == KeyCode.F12) {
                 showSource(null);
             }
-        }
-        );
+
+            if(ke.isControlDown()) {
+                if(ke.getCode() == KeyCode.MINUS || ke.getCode() == KeyCode.UNDERSCORE) {
+                    zoomOut(null);
+                } else if(ke.getCode() == KeyCode.EQUALS || ke.getCode() == KeyCode.PLUS) {
+                    zoomIn(null);
+                }
+            }
+
+            if(ke.isAltDown()) {
+                if(ke.getCode() == KeyCode.LEFT) {
+                    goBack(null);
+                } else if(ke.getCode() == KeyCode.RIGHT) {
+                    goForward(null);
+                } else if(ke.getCode() == KeyCode.R) {
+                    goRefresh(null);
+                }
+            }
+
+        });
 
         //Zoom with Scroll Mouse (Ctrl + Scroll Mouse)
         webView.addEventFilter(ScrollEvent.SCROLL, (ScrollEvent se) -> {
             double deltaY = se.getDeltaY();
             if(se.isControlDown() && deltaY > 0) {
-                zoomIn();
+                zoomIn(null);
             } else if(se.isControlDown() && deltaY < 0) {
-                zoomOut();
+                zoomOut(null);
             }
         });
     }
@@ -117,12 +139,12 @@ public class Controller {
     }
 
     @FXML
-    void zoomIn() {
+    void zoomIn(ActionEvent event) {
         webView.setZoom(webView.getZoom() * 1.1);
     }
 
     @FXML
-    void zoomOut() {
+    void zoomOut(ActionEvent event) {
         webView.setZoom(webView.getZoom() / 1.1);
     }
 
