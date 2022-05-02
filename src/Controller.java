@@ -1,19 +1,13 @@
-
 import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
 import javafx.scene.input.KeyCode;
-
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-
-import java.security.Key;
 
 public class Controller {
 
@@ -47,52 +41,51 @@ public class Controller {
     public Tab currentTab;
 
     public void initialize() {
-        webView.getEngine().locationProperty().addListener((ov, oldstr, newstr) ->{
+        webView.getEngine().locationProperty().addListener((ov, oldstr, newstr) -> {
             goWeb.setText(newstr);
         });
-        webView.getEngine().getLoadWorker().stateProperty().addListener((obs,oldvalue,newvalue) -> {
-            if(newvalue == State.SUCCEEDED){
+        webView.getEngine().getLoadWorker().stateProperty().addListener((obs, oldvalue, newvalue) -> {
+            if (newvalue == State.SUCCEEDED) {
                 currentTab.setText(webView.getEngine().getTitle());
             }
-       });
+        });
 
-        //Shortcut for browser
+        // Shortcut for browser
         webView.addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent ke) -> {
             if (ke.getCode() == KeyCode.F12) {
                 showSource(null);
             }
 
-            if(ke.isControlDown()) {
-                if(ke.getCode() == KeyCode.MINUS || ke.getCode() == KeyCode.UNDERSCORE) {
+            if (ke.isControlDown()) {
+                if (ke.getCode() == KeyCode.MINUS || ke.getCode() == KeyCode.UNDERSCORE) {
                     zoomOut(null);
-                } else if(ke.getCode() == KeyCode.EQUALS || ke.getCode() == KeyCode.PLUS) {
+                } else if (ke.getCode() == KeyCode.EQUALS || ke.getCode() == KeyCode.PLUS) {
                     zoomIn(null);
                 }
             }
 
-            if(ke.isAltDown()) {
-                if(ke.getCode() == KeyCode.LEFT) {
+            if (ke.isAltDown()) {
+                if (ke.getCode() == KeyCode.LEFT) {
                     goBack(null);
-                } else if(ke.getCode() == KeyCode.RIGHT) {
+                } else if (ke.getCode() == KeyCode.RIGHT) {
                     goForward(null);
-                } else if(ke.getCode() == KeyCode.R) {
+                } else if (ke.getCode() == KeyCode.R) {
                     goRefresh(null);
                 }
             }
 
         });
 
-        //Zoom with Scroll Mouse (Ctrl + Scroll Mouse)
+        // Zoom with Scroll Mouse (Ctrl + Scroll Mouse)
         webView.addEventFilter(ScrollEvent.SCROLL, (ScrollEvent se) -> {
             double deltaY = se.getDeltaY();
-            if(se.isControlDown() && deltaY > 0) {
+            if (se.isControlDown() && deltaY > 0) {
                 zoomIn(null);
-            } else if(se.isControlDown() && deltaY < 0) {
+            } else if (se.isControlDown() && deltaY < 0) {
                 zoomOut(null);
             }
         });
     }
-    
 
     @FXML
     void addNewTab(ActionEvent event) {
@@ -101,7 +94,8 @@ public class Controller {
 
     @FXML
     void showSource(ActionEvent event) {
-        showText("Source of " + webView.getEngine().getTitle(), (Stage) webView.getScene().getWindow() ,(String)webView.getEngine().executeScript("document.documentElement.outerHTML"));
+        showText("Source of " + webView.getEngine().getTitle(), (Stage) webView.getScene().getWindow(),
+                (String) webView.getEngine().executeScript("document.documentElement.outerHTML"));
     }
 
     @FXML
@@ -136,14 +130,14 @@ public class Controller {
 
     @FXML
     void zoomIn(ActionEvent event) {
-        if(webView.getZoom() <= 1.9) {
+        if (webView.getZoom() <= 1.9) {
             webView.setZoom(webView.getZoom() * 1.1);
         }
     }
 
     @FXML
     void zoomOut(ActionEvent event) {
-        if(webView.getZoom() >= 0.25) {
+        if (webView.getZoom() >= 0.25) {
             webView.setZoom(webView.getZoom() / 1.1);
         }
     }
@@ -156,5 +150,45 @@ public class Controller {
         secondWindow.setScene(secondScene);
         secondWindow.initOwner(window);
         secondWindow.show();
+    }
+
+    public void setBtBack(Button btBack) {
+        this.btBack = btBack;
+    }
+
+    public void setBtForward(Button btForward) {
+        this.btForward = btForward;
+    }
+
+    public void setBtNewTab(MenuItem btNewTab) {
+        this.btNewTab = btNewTab;
+    }
+
+    public void setBtRefresh(Button btRefresh) {
+        this.btRefresh = btRefresh;
+    }
+
+    public void setBtShowSource(MenuItem btShowSource) {
+        this.btShowSource = btShowSource;
+    }
+
+    public void setBtZoomIn(Button btZoomIn) {
+        this.btZoomIn = btZoomIn;
+    }
+
+    public void setBtZoomOut(Button btZoomOut) {
+        this.btZoomOut = btZoomOut;
+    }
+
+    public void setCurrentTab(Tab currentTab) {
+        this.currentTab = currentTab;
+    }
+
+    public void setGoWeb(TextField goWeb) {
+        this.goWeb = goWeb;
+    }
+
+    public void setWebView(WebView webView) {
+        this.webView = webView;
     }
 }
