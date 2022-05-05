@@ -35,7 +35,8 @@ public class App extends Application {
         });
 
         Scene scene = new Scene(tabPane);
-        
+        primaryStage.getIcons().add(new Image("icons/icon.png"));
+        primaryStage.setTitle("The World Browser");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
