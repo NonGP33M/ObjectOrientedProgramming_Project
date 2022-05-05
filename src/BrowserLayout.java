@@ -38,6 +38,7 @@ public class BrowserLayout {
         btBack.setMinSize(28, 28);
         btBack.setOnAction(controller::goBack);
         btBack.setPickOnBounds(true);
+        btBack.setBackground(null);
         HBox.setHgrow(btBack, Priority.NEVER);
         controller.setBtBack(btBack);
         btSetGraphic(btBack, "back");
@@ -46,6 +47,7 @@ public class BrowserLayout {
         btForward.setPrefSize(28, 28);
         btForward.setMinSize(28, 28);
         btForward.setOnAction(controller::goForward);
+        btForward.setBackground(null);
         HBox.setHgrow(btForward, Priority.NEVER);
         controller.setBtForward(btForward);
         btSetGraphic(btForward, "forward");
@@ -55,6 +57,7 @@ public class BrowserLayout {
         btRefresh.setMinSize(28, 28);
         btRefresh.setOnAction(controller::goRefresh);
         btRefresh.setMnemonicParsing(false);
+        btRefresh.setBackground(null);
         HBox.setHgrow(btRefresh, Priority.NEVER);
         controller.setBtRefresh(btRefresh);
         btSetGraphic(btRefresh, "Refresh");
@@ -70,6 +73,7 @@ public class BrowserLayout {
         btZoomIn.setPrefSize(28, 28);
         btZoomIn.setMinSize(28, 28);
         btZoomIn.setOnAction(controller::zoomIn);
+        btZoomIn.setBackground(null);
         HBox.setHgrow(btZoomIn, Priority.NEVER);
         controller.setBtZoomIn(btZoomIn);
         btSetGraphic(btZoomIn, "zoomin");
@@ -78,6 +82,7 @@ public class BrowserLayout {
         btZoomOut.setPrefSize(28, 28);
         btZoomOut.setMinSize(28, 28);
         btZoomOut.setOnAction(controller::zoomOut);
+        btZoomOut.setBackground(null);
         HBox.setHgrow(btZoomOut, Priority.NEVER);
         controller.setBtZoomOut(btZoomOut);
         btSetGraphic(btZoomOut, "zoomout");
@@ -85,6 +90,7 @@ public class BrowserLayout {
         MenuButton btMore = new MenuButton();
         btMore.setPrefSize(28, 28);
         btMore.setMinSize(40, 28);
+        btMore.setBackground(null);
 
         MenuItem btNewTab = new MenuItem("New tab");
         btNewTab.setOnAction(controller::addNewTab);
