@@ -85,6 +85,8 @@ public class Controller {
                 zoomOut(null);
             }
         });
+
+
     }
 
     @FXML
