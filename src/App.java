@@ -34,8 +34,9 @@ public class App extends Application {
         });
 
         Scene scene = new Scene(tabPane);
-        scene.getStylesheets().add(getClass().getResource("css/ButtonLayout.css").toString());        
-        primaryStage.setTitle("Program");
+        scene.getStylesheets().add(getClass().getResource("css/ButtonLayout.css").toString());
+        primaryStage.getIcons().add(new Image("icons/icon.png"));
+        primaryStage.setTitle("The World Browser");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
