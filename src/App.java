@@ -22,14 +22,16 @@ public class App extends Application {
         Tab add = new Tab();
         add.setClosable(false);
         add.setId("addTab");
-        add.setGraphic(new ImageView(new Image(getClass().getResource("icons/add.png").toString(),14,14,true,false)));
+        add.setStyle("-fx-background-color: transparent");
+        add.setGraphic(
+                new ImageView(new Image(getClass().getResource("icons/add.png").toString(), 14, 14, true, false)));
         tabPane.getTabs().add(add);
         tabPane.getTabs().add(0, createNewTab("New tab"));
         tabPane.getSelectionModel().select(0);
         tabPane.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
             if (newTab == add) {
                 Tab t = createNewTab("New tab");
-                tabPane.getTabs().add(tabPane.getTabs().size()-1, t);
+                tabPane.getTabs().add(tabPane.getTabs().size() - 1, t);
                 tabPane.getSelectionModel().select(t);
             }
         });
@@ -40,8 +42,8 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    
-    public Tab createNewTab(String name){
+
+    public Tab createNewTab(String name) {
         Tab tab = new Tab(name);
         BrowserLayout bl = new BrowserLayout();
         Controller con = bl.getController();
