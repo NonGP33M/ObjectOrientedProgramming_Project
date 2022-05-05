@@ -85,10 +85,12 @@ public class BrowserLayout {
         MenuButton btMore = new MenuButton();
         btMore.setPrefSize(28, 28);
         btMore.setMinSize(28, 28);
+
         MenuItem btNewTab = new MenuItem("New tab");
         btNewTab.setOnAction(controller::addNewTab);
         btNewTab.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.CONTROL_DOWN));
         controller.setBtNewTab(btNewTab);
+        
         MenuItem btShowSource = new MenuItem("Show Source Code");
         btShowSource.setOnAction(controller::showSource);
         controller.setBtShowSource(btShowSource);

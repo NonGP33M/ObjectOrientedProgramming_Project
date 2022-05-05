@@ -18,6 +18,7 @@ public class App extends Application {
         tabPane.setPrefSize(900, 600);
         tabPane.setTabClosingPolicy(TabClosingPolicy.ALL_TABS);
 
+        // add new tad
         Tab add = new Tab();
         add.setClosable(false);
         add.setId("addTab");
@@ -34,7 +35,8 @@ public class App extends Application {
         });
 
         Scene scene = new Scene(tabPane);
-        scene.getStylesheets().add(getClass().getResource("css/ButtonLayout.css").toString());        
+        primaryStage.getIcons().add(new Image("icons/icon.png"));
+        primaryStage.setTitle("The World Browser");
         primaryStage.setTitle("Program");
         primaryStage.setScene(scene);
         primaryStage.show();
